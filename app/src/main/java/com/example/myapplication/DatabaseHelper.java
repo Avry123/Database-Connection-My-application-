@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -40,4 +41,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false;
         }
     }
+
+    public Cursor viewRecords() {
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor res = database.rawQuery("SELECT * FROM FYMCA", null);
+        return res;
+    }
+
+    public Cursor viewSpecificRecords(Integer id) {
+        SQLiteDatabase database = this.getReadableDatabase();
+        Cursor res = database.rawQuery("SELECT * FROM FYMCA WHERE rollNo =" + id, null);
+        return res;
+    }
+
 }
+
+
